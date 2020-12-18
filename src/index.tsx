@@ -1,17 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import React, { StrictMode } from "react";
+import ReactDOM from "react-dom";
+import { createAppViewModel } from "./viewmodels";
+import AppProvider from "./views/shared/AppProvider";
+import App from "./views/App";
+import "./styles/index.scss";
+
+const app = createAppViewModel();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
+  <StrictMode>
+    <AppProvider value={app}>
+      <App />
+    </AppProvider>
+  </StrictMode>,
+  document.getElementById("root")
 );
 
-// Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
-// Learn more: https://www.snowpack.dev/#hot-module-replacement
-if (import.meta.hot) {
-  import.meta.hot.accept();
+if (module.hot) {
+  module.hot.accept();
 }
